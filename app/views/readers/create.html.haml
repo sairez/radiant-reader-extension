@@ -13,8 +13,10 @@
       Click on that link and the registration process will be complete.
       
     %p
-      We're sorry about the extra step: it's just to make sure that you are you. If the email hasn't come through yet, you can always go and
-      = link_to("give yourself a gravatar", "http://gravatar.com/signup") + '.'
+      We're sorry about the extra step: it's just to make sure that you are you. 
+      - if Radiant::Config['reader.enable_gravatars?']    
+        If the email hasn't come through yet, you can always go and
+        = link_to("give yourself a gravatar", "http://gravatar.com/signup") + '.'
 
 - content_for :breadcrumbs do
   = link_to 'Home', '/'

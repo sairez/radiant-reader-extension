@@ -26,9 +26,10 @@
     %li
       When you press the 'register' button we will send a confirmation email to the address you enter above. 
       Click on a link in that message, and you're in.
-    %li
-      If you would like a picture to appear next to your messages, give yourself a 
-      = link_to "gravatar.", "http://www.gravatar.com"
+    - if Radiant::Config['reader.enable_gravatars?']    
+      %li
+        If you would like a picture to appear next to your messages, give yourself a 
+        = link_to "gravatar.", "http://www.gravatar.com"
     %li
       Please make sure you're happy with our 
       = link_to "terms and conditions", "/terms"
