@@ -3,6 +3,7 @@ class ReadersController < ReaderActionController
   cattr_accessor :extended_form_partials
   
   before_filter :check_registration_allowed, :only => [:new, :create]
+  before_filter :check_profiles_enabled, :only => [:index, :show]
   before_filter :initialize_form_partials, :only => [:new, :edit, :update, :create]
   before_filter :i_am_me, :only => [:show]
   before_filter :require_reader, :except => [:index, :new, :create, :activate]
@@ -15,7 +16,7 @@ class ReadersController < ReaderActionController
   end
 
   def show
-    @reader = Reader.find(params[:id])
+    @reader = Reader.find(params[:id]) rescue restrict_to_self
     respond_to do |format|
       format.html { 
         if @reader.inactive? && @reader == current_reader
@@ -115,6 +116,13 @@ protected
     unless Radiant::Config['reader.allow_registration?']
       flash[:error] = "Sorry. This site does not allow public registration."
       redirect_to reader_login_url
+      false
+    end
+  end
+  
+  def check_profiles_enabled
+    unless Radiant::Config['reader.enable_profiles?']
+      redirect_to root_url
       false
     end
   end

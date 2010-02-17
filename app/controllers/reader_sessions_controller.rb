@@ -50,7 +50,11 @@ class ReaderSessionsController < ReaderActionController
 protected
 
   def default_loggedin_url
-    reader_url(@reader_session.reader)
+    if Radiant::Config['reader.enable_profiles?'] 
+      reader_url(@reader_session.reader)
+    else
+      root_url
+    end
   end
 
 end
