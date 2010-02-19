@@ -23,12 +23,18 @@
   = render :partial => 'contributions'
       
 - content_for :breadhead do
-  = link_to 'People', '/readers'
+  - if Radiant::Config['reader.enable_profiles?']
+    = link_to 'People', '/readers'
+  - else
+    = 'People'
 
 - content_for :breadcrumbs do
   = link_to 'Home', '/'
   &gt;
-  = link_to 'People', '/readers'
+  - if Radiant::Config['reader.enable_profiles?']
+    = link_to 'People', '/readers'
+  - else
+    = 'People'
   &gt;
   = @reader.name
 

@@ -31,7 +31,10 @@
   = render :partial => 'login_form', :locals => {:no_title => true}
 
 - content_for :breadcrumbs do
-  = link_to 'Readers', '/readers'
+  - if Radiant::Config['reader.enable_profiles?']
+    = link_to 'Readers', '/readers'
+  - else
+    = 'Readers'
   &gt; Log in
 
 - content_for :pagetitle do

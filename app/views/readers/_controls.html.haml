@@ -6,8 +6,9 @@
           Hello 
           = current_reader.name
         %br
-        = link_to 'your page', reader_url(current_reader)
-        |
+        - if Radiant::Config['reader.enable_profiles?']
+          = link_to 'your page', reader_url(current_reader)
+          |
         = link_to 'preferences', edit_reader_url(current_reader)
         |
         - if current_reader.is_user?

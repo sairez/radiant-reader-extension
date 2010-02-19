@@ -3,7 +3,10 @@
 %div.preferences_form
   %p
     Hello 
-    = link_to "#{@reader.name}.", reader_url(@reader)
+    - if Radiant::Config['reader.enable_profiles?']
+      = link_to "#{@reader.name}.", reader_url(@reader)
+    - else
+      = "#{@reader.name}."
     You can use this form to change your preferences and enter a bit more information about yourself.
     First, just to make sure you're you, please enter your current password:
 
@@ -40,7 +43,10 @@
 - content_for :breadcrumbs do 
   = link_to 'Home', '/'
   &gt;
-  = link_to 'You', '/readers/me'
+  - if Radiant::Config['reader.enable_profiles?']
+    = link_to 'You', '/readers/me'
+  - else
+    = 'You'
   &gt;
   Revise your account
 
