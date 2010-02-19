@@ -91,7 +91,7 @@ protected
   end
 
   def restrict_to_self
-    flash[:error] = "Sorry. You are not allowed to edit other people's accounts." if params[:id] && params[:id] != current_reader.id
+    flash[:error] = "Sorry. You are not allowed to edit other people's accounts." if params[:id] && (params[:id].to_i != current_reader.id.to_i)
     @reader = current_reader
   end
   
