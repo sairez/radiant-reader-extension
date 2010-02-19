@@ -139,7 +139,7 @@ describe ReadersController do
 
       it "should redirect to the reader page" do 
         response.should be_redirect
-        response.should redirect_to(reader_url(@reader))
+        response.should redirect_to(default_loggedin_url)
       end
       
     end

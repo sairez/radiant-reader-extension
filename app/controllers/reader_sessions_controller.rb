@@ -46,15 +46,5 @@ class ReaderSessionsController < ReaderActionController
     flash[:notice] = "You are logged out. Bye!"
     redirect_back_or_to reader_login_url
   end
-  
-protected
-
-  def default_loggedin_url
-    if Radiant::Config['reader.enable_profiles?'] 
-      reader_url(@reader_session.reader)
-    else
-      root_url
-    end
-  end
 
 end

@@ -78,7 +78,7 @@ class ReadersController < ReaderActionController
     @reader.clear_password = params[:reader][:password] if params[:reader][:password]
     if @reader.save
       flash[:notice] = "Your account has been updated"
-      redirect_to url_for(@reader)
+      redirect_to default_loggedin_url
     else
       render :action => 'edit'
     end
@@ -122,7 +122,7 @@ protected
   
   def check_profiles_enabled
     unless Radiant::Config['reader.enable_profiles?']
-      redirect_to root_url
+      redirect_to default_loggedin_url
       false
     end
   end

@@ -28,6 +28,7 @@ class ReaderExtension < Radiant::Extension
     map.reader_login '/login', :controller => 'reader_sessions', :action => 'new'
     map.reader_logout '/logout', :controller => 'reader_sessions', :action => 'destroy'
     map.reader_permission_denied '/permission_denied', :controller => 'readers', :action => 'permission_denied'
+    map.reader_account '/account', :controller => 'readers', :action => 'edit'
   end
   
   extension_config do |config|

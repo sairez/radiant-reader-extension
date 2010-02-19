@@ -4,7 +4,10 @@
   - if Radiant::Config['reader.enable_gravatars?']    
     #readers
       - @readers.each do |reader|
-        = link_to gravatar_for(reader, {:size => 100}, {:class => 'big_gravatar'}), reader_url(reader), {:title => reader.name}
+        - if Radiant::Config['reader.enable_profiles?']  
+          = link_to gravatar_for(reader, {:size => 100}, {:class => 'big_gravatar'}), reader_url(reader), {:title => reader.name}
+        - else
+          = gravatar_for(reader, {:size => 100}, {:class => 'big_gravatar'})
   %div.stretcher
     %p 
 
