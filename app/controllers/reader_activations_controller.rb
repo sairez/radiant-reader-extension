@@ -54,7 +54,11 @@ protected
   end
 
   def default_activated_url
-    reader_url(@reader)
+    if Radiant::Config['reader.enable_profiles?'] 
+      reader_url(@reader)
+    else
+      render :action => 'show'
+    end
   end
 
 end
