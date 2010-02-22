@@ -88,7 +88,7 @@ module ControllerExtensions    # for inclusion into ApplicationController
       if Radiant::Config['reader.enable_profiles?'] 
         reader_url(@reader_session.reader)
       else
-        Radiant::Config['reader.default_loggedin_url'] || '/support/foo'
+        Radiant::Config['reader.default_loggedin_url'] || '/'
       end
     end
 
