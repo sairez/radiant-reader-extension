@@ -57,7 +57,7 @@ protected
     if Radiant::Config['reader.enable_profiles?'] 
       reader_url(@reader)
     else
-      render :action => 'show'
+      Radiant::Config['reader.default_loggedin_url']
     end
   end
 

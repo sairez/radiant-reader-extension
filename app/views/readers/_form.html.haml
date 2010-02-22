@@ -35,20 +35,22 @@
     %br
     = f.text_field :email, :class => 'standard'
 
-- with_error_report(@reader.errors.on(:description)) do
-  = f.label :description, 'A little about yourself', :class => 'optional'
-  %span.formnote 
-    you can fill this in later. 
-    Textile formatting 
-    is allowed.
-  %br
-  = f.text_area :description, :class => 'standard', :rows => 8
+- if Radiant::Config['reader.enable_profiles?'] 
+  - with_error_report(@reader.errors.on(:description)) do
+    = f.label :description, 'A little about yourself', :class => 'optional'
+    %span.formnote 
+      you can fill this in later. 
+      Textile formatting 
+      is allowed.
+    %br
+    = f.text_area :description, :class => 'standard', :rows => 8
 
-- with_error_report(@reader.errors.on(:login)) do
-  = f.label :login, 'Login username', :class => 'optional'
-  %span.formnote leave blank to use your email address
-  %br
-  = f.text_field :login, :class => 'standard'
+- unless Radiant::Config['reader.email_login?'] 
+  - with_error_report(@reader.errors.on(:login)) do
+    = f.label :login, 'Login username', :class => 'optional'
+    %span.formnote leave blank to use your email address
+    %br
+    = f.text_field :login, :class => 'standard'
 
 - with_error_report(@reader.errors.on(:password)) do
   - label = @reader.new_record? ? 'Password' : 'Change password?'

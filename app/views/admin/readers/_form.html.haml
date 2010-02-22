@@ -30,13 +30,16 @@
           %td.field
             = f.text_field "email", :class => 'textbox', :maxlength => 255
           %td.help
-            Required and must be valid.
+            Required and must be valid.      
       - form.edit_username do
         %tr
           %th.label
             = f.label :login, 'Username'
           %td.field
-            = f.text_field "login", :class => 'textbox', :maxlength => 40 
+            - if Radiant::Config['reader.email_login?']
+              = f.text_field "login", :class => 'textbox', :maxlength => 40, :disabled => true
+            - else
+              = f.text_field "login", :class => 'textbox', :maxlength => 40
           %td.help
             Defaults to email address. Must be unique.
       - form.edit_password do
