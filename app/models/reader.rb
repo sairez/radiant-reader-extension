@@ -111,7 +111,7 @@ class Reader < ActiveRecord::Base
   protected
 
     def set_login
-      self.login = self.email if self.login.blank?
+      self.login = self.email if Radiant::Config['reader.email_login?'] || self.login.blank?
     end
 
   private
